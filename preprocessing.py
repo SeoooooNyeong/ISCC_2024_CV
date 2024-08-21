@@ -7,6 +7,7 @@ image_folder = "./비수도권/원천데이터_0611/1920_1080/raw"
 label_folder = "./비수도권/라벨링데이터_1026/1920_1080/m_train_1920_1080_daylight_1"
 # image_folder = "./raw_images"
 # label_folder = "./raw_labels"
+ 
 output_image_folder = "images"
 output_label_folder = "labels"
 
@@ -43,7 +44,9 @@ def determine_class(annotation):
                 return "3redleft"
             elif attributes["yellow"] == "on" and attributes["red"] == "off" and attributes["green"] == "off" and attributes["left_arrow"] == "off" and attributes["x_light"] == "off" and attributes["others_arrow"] == "off":
                 return "3yellow"
-        
+            elif attributes["yellow"] == "on" and attributes["red"] == "on" and attributes["green"] == "off" and attributes["left_arrow"] == "off" and attributes["x_light"] == "off" and attributes["others_arrow"] == "off":
+                return "3redyellow"
+
         elif light_count == "4":
             cnt4 += 1
             if attributes["red"] == "on" and attributes["green"] == "off" and attributes["yellow"] == "off" and attributes["left_arrow"] == "off" and attributes["x_light"] == "off" and attributes["others_arrow"] == "off":
@@ -56,6 +59,8 @@ def determine_class(annotation):
                 return "4green"
             elif attributes["green"] == "on" and attributes["red"] == "off" and attributes["yellow"] == "off" and attributes["left_arrow"] == "on" and attributes["x_light"] == "off" and attributes["others_arrow"] == "off":
                 return "4greenleft"
+            elif attributes["green"] == "off" and attributes["red"] == "on" and attributes["yellow"] == "on" and attributes["left_arrow"] == "off" and attributes["x_light"] == "off" and attributes["others_arrow"] == "off":
+                return "4redyellow"
             
         elif light_count == "2":
             cnt2 += 1
